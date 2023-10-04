@@ -9,3 +9,7 @@ JourneyJournal is a community-driven platform where users can share and explore 
 - **Filter & Search**: Easily find specific trips or destinations.
 - **Community Driven**: Engage with other travelers and learn from their experiences.
 - **Categories**: Classify trips into various categories for easier navigation and exploration.
+
+## Documentation
+![Data Dictionary](./docs/DataDictionary.md)
+![Queries](./docs/DataDictionary.md)
