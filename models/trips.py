@@ -14,3 +14,9 @@ class Trips(Base):
     traveler_gender = Column(String)
     traveler_nationality = Column(String)
     trip_comment = Column(String)
+
+    def __repr__(self):
+            return (f"<Trips(id={self.id}, destination={self.destination}, start_date={self.start_date}, "
+                    f"end_date={self.end_date}, duration_days={self.duration_days}, traveler_name={self.traveler_name}, "
+                    f"traveler_age={self.traveler_age}, traveler_gender={self.traveler_gender}, "
+                    f"traveler_nationality={self.traveler_nationality}, trip_comment={self.trip_comment})>")
