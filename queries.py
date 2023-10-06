@@ -6,8 +6,7 @@ from models import Trips, Expenses, TripCategoryAssociation, TripCategory
 engine = create_engine('sqlite:///journeyjournal.db', echo=True)
 Session = sessionmaker(bind=engine)
 
-# Query Functions
-
+# Query with JOIN (combining data from trips and expenses tables):
 def get_all_expenses_for_trip(trip_id):
     session = Session()
     try:
@@ -16,6 +15,7 @@ def get_all_expenses_for_trip(trip_id):
     finally:
         session.close()
 
+# Parameterized Input Query (finding trips by destination):
 def get_all_trips_by_traveler_name(traveler_name):
     session = Session()
     try:
@@ -24,6 +24,7 @@ def get_all_trips_by_traveler_name(traveler_name):
     finally:
         session.close()
 
+#Aggregated Data Query (average accommodation cost per destination):
 def get_average_accommodation_cost():
     session = Session()
     try:
@@ -32,6 +33,7 @@ def get_average_accommodation_cost():
     finally:
         session.close()
 
+#Query with JOIN for Trips and Their Categories
 def get_trips_with_categories():
     session = Session()
     try:
@@ -48,6 +50,7 @@ def get_trips_with_categories():
     finally:
         session.close()
 
+#Export Table with Trips, Expenses, and Trip Categories for a Single Trip
 def get_complete_trip_details(trip_id):
     session = Session()
     try:
