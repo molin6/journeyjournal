@@ -13,3 +13,4 @@ JourneyJournal is a community-driven platform where users can share and explore 
 ## Documentation
 ![Data Dictionary](./docs/DataDictionary.md)
 ![Queries](./docs/Queries.md)
+![API Endpoint Documentation](./docs/APIEndPoints.md)
