@@ -1,10 +1,31 @@
 ## Journey Journal API Documentation
 
+# List of Endpoints
+- [List All Trips](#list-all-trips)
+- [Get Trip By ID](#get-a-specific-trip-by-id)
+- [List Trips by Traveller](#list-all-trips-by-a-specific-traveler)
+- [Add a new trip](#add-a-new-trip)
+- [Update a trip](#update-a-trip)
+- [Delete a trip](#delete-a-trip)
+- [List All expenses for a trip](#list-all-expenses-for-a-specific-trip)
+- [Add Expense to a trip](#add-a-new-expense-for-a-trip)
+- [Update an expense](#update-an-expense)
+- [Delete an expense](#delete-an-expense)
+- [List all trip categories](#list-all-trip-categories)
+- [Add a new category](#add-a-new-category)
+- [Update a category](#update-a-category)
+- [Delete a category](#delete-a-category)
+- [Get avg accommodation cost](#get-average-accommodation-cost)
+- [Get trips with their categories](#get-trips-with-their-categories)
+- [Get full details for a trip (Category, Expenses, Trip info)](#get-full-details-for-a-specific-trip)
+- [Search for trips based on date range](#search-for-trips-based-on-date-range)
+- [Search for trips based on keyword](#search-trips-based-on-a-keyword)
+- [Filter expenses by amount](#search-expenses-within-a-certain-amount-range)
 ---
 
 ### **Trips**
 
-#### List all trips
+## List all trips
 
 - **Endpoint**: `GET /trips`
 - **Description**: Retrieve a list of all trips stored in the system.
@@ -12,15 +33,33 @@
     ```json
     [
         {
-            "TripID": 1,
-            "destination": "Paris",
-            ...
+            "destination": "London, UK",
+            "duration_days": 7,
+            "end_date": "Mon, 08 May 2023 00:00:00 GMT",
+            "id": 1,
+            "start_date": "Mon, 01 May 2023 00:00:00 GMT",
+            "traveler_age": 35,
+            "traveler_gender": "Male",
+            "traveler_name": "John Smith",
+            "traveler_nationality": "American",
+            "trip_comment": null
+        },
+        {
+            "destination": "Phuket, Thailand",
+            "duration_days": 5,
+            "end_date": "Tue, 20 Jun 2023 00:00:00 GMT",
+            "id": 2,
+            "start_date": "Thu, 15 Jun 2023 00:00:00 GMT",
+            "traveler_age": 28,
+            "traveler_gender": "Female",
+            "traveler_name": "Jane Doe",
+            "traveler_nationality": "Canadian",
+            "trip_comment": null
         },
         ...
     ]
-    ```
 
-#### Get a specific trip by ID
+## Get a specific trip by ID
 
 - **Endpoint**: `GET /trips/<trip_id>`
 - **Description**: Obtain detailed information about a specific trip based on its ID.
@@ -29,13 +68,20 @@
 - **Returns**:
     ```json
     {
-        "TripID": 1,
-        "destination": "Paris",
-        ...
+        "destination": "London, UK",
+        "duration_days": 7,
+        "end_date": "Mon, 08 May 2023 00:00:00 GMT",
+        "id": 1,
+        "start_date": "Mon, 01 May 2023 00:00:00 GMT",
+        "traveler_age": 35,
+        "traveler_gender": "Male",
+        "traveler_name": "John Smith",
+        "traveler_nationality": "American",
+        "trip_comment": null
     }
     ```
 
-#### List all trips by a specific traveler
+## List all trips by a specific traveler
 
 - **Endpoint**: `GET /trips?traveler_name=<traveler_name>`
 - **Description**: Display all trips associated with a particular traveler.
@@ -45,58 +91,90 @@
     ```json
     [
         {
-            "TripID": 2,
-            "destination": "London",
-            ...
+            "destination": "New York, USA",
+            "duration_days": 14,
+            "end_date": "Tue, 29 Aug 2023 00:00:00 GMT",
+            "id": 4,
+            "start_date": "Tue, 15 Aug 2023 00:00:00 GMT",
+            "traveler_age": 29,
+            "traveler_gender": "Female",
+            "traveler_name": "Sarah Johnson",
+            "traveler_nationality": "British",
+            "trip_comment": null
         },
+        {
+            "destination": "New York, USA",
+            "duration_days": 14,
+            "end_date": "Tue, 29 Aug 2023 00:00:00 GMT",
+            "id": 21,
+            "start_date": "Tue, 15 Aug 2023 00:00:00 GMT",
+            "traveler_age": 29,
+            "traveler_gender": "Female",
+            "traveler_name": "Sarah Johnson",
+            "traveler_nationality": "British",
+            "trip_comment": null
+        }
         ...
     ]
     ```
 
-#### Add a new trip
+## Add a new trip
 
 - **Endpoint**: `POST /trips`
 - **Description**: Add a new trip entry.
 - **Body**:
     ```json
     {
-        "destination": "Berlin",
-        ...
+        "destination": "Tokyo",
+        "start_date": "9/12/2024",
+        "end_date": "9/22/2024",
+        "duration_days": 10,
+        "traveler_name": "Alice Smith",
+        "traveler_age": 28,
+        "traveler_gender": "Female",
+        "traveler_nationality": "American",
+        "trip_comment": "This can be null"
     }
     ```
 - **Returns**:
-    ```json
-    {
-        "TripID": 3,
-        "destination": "Berlin",
-        ...
-    }
-    ```
+Newly added trip details
 
-#### Update a trip
+## Update a trip
 
 - **Endpoint**: `PUT /trips/<trip_id>`
-- **Description**: Modify details of an existing trip.
+- **Description**: Modify details of an existing trip. Can specify any field in JSON body.
 - **Parameters**: 
   - `trip_id: int`
-- **Body**:
+- **Body (list of all fields able to update, can put just 1 or all)**:
     ```json
     {
-        "destination": "Berlin Updated",
-        ...
+        "destination": "",
+        "duration_days": 0,
+        "end_date": "",
+        "id": 0,
+        "start_date": "",
+        "traveler_age": 0,
+        "traveler_gender": "",
+        "traveler_name": "",
+        "traveler_nationality": "",
+        "trip_comment": ""
     }
     ```
+- **Returns**:
+ Newly updated trip details
 
-#### Delete a trip
+## Delete a trip
 
 - **Endpoint**: `DELETE /trips/<trip_id>`
 - **Description**: Remove a specific trip from the database.
 - **Parameters**: 
   - `trip_id: int`
+- **Returns**:
+"Trip deleted successfully"
 
 ### **Expenses**
 
-#### List all expenses for a specific trip
+## List all expenses for a specific trip
 
 - **Endpoint**: `GET /trips/<trip_id>/expenses`
 - **Description**: Retrieve all expenses related to a specific trip.
@@ -106,15 +184,18 @@
     ```json
     [
         {
-            "ExpenseID": 1,
-            "AccommodationType": "Hotel",
-            ...
+            "accommodation_cost": 350.0,
+            "id": 50,
+            "main_accommodation_type": "Airbnb",
+            "main_transportation_type": "Plane",
+            "transportation_cost": 600.0,
+            "trip_id": 50
         },
         ...
     ]
     ```
 
-#### Add a new expense for a trip
+## Add a new expense for a trip
 
 - **Endpoint**: `POST /trips/<trip_id>/expenses`
 - **Description**: Record a new expense for a specific trip.
@@ -123,43 +204,56 @@
 - **Body**:
     ```json
     {
-        "AccommodationType": "Hostel",
-        ...
+        "accommodation_cost": 350.0,
+        "id": 50,
+        "main_accommodation_type": "Airbnb",
+        "main_transportation_type": "Plane",
+        "transportation_cost": 600.0,
+        "trip_id": 50
     }
     ```
 - **Returns**:
     ```json
     {
-        "ExpenseID": 2,
-        "AccommodationType": "Hostel",
-        ...
+        "accommodation_cost": 350.0,
+        "id": 50,
+        "main_accommodation_type": "Airbnb",
+        "main_transportation_type": "Plane",
+        "transportation_cost": 600.0,
+        "trip_id": 50
     }
     ```
 
-#### Update an expense
+## Update an expense
 
 - **Endpoint**: `PUT /expenses/<expense_id>`
 - **Description**: Edit details of an existing expense.
 - **Parameters**: 
   - `expense_id: int`
-- **Body**:
+- **Body (Can do just 1 or multiple)**:
     ```json
     {
-        "AccommodationType": "Motel",
-        ...
+        "accommodation_cost": 0,
+        "id": 0,
+        "main_accommodation_type": "",
+        "main_transportation_type": "",
+        "transportation_cost": 0,
+        "trip_id": 0
     }
     ```
-
-#### Delete an expense
+- **Response**:
+Newly Updated Expense
+## Delete an expense
 
 - **Endpoint**: `DELETE /expenses/<expense_id>`
 - **Description**: Eliminate a specific expense record.
 - **Parameters**: 
   - `expense_id: int`
+- **Response**: "Expense deleted successfully"
 
 ### **Categories**
 
-#### List all trip categories
+## List all trip categories
 
 - **Endpoint**: `GET /categories`
 - **Description**: Display all trip categories.
@@ -167,33 +261,48 @@
     ```json
     [
         {
-            "CategoryID": 1,
-            "CategoryName": "Beach",
-            ...
+            "category_name": "Vacation",
+            "id": 1
         },
+        {
+            "category_name": "Business",
+            "id": 2
+        },
+        {
+            "category_name": "Medical",
+            "id": 3
+        },
+        {
+            "category_name": "Family Visit",
+            "id": 4
+        },
+        {
+            "category_name": "Event",
+            "id": 5
+        }
         ...
     ]
     ```
 
-#### Add a new category
+## Add a new category
 
 - **Endpoint**: `POST /categories`
 - **Description**: Introduce a new trip category.
 - **Body**:
     ```json
     {
-        "CategoryName": "Hiking"
+        "category_name": "Hiking"
     }
     ```
 - **Returns**:
     ```json
     {
-        "CategoryID": 2,
-        "CategoryName": "Hiking"
+        "id": 2,
+        "category_name": "Hiking"
     }
     ```
 
-#### Update a category
+## Update a category
 
 - **Endpoint**: `PUT /categories/<category_id>`
 - **Description**: Modify an existing trip category.
@@ -202,23 +311,27 @@
 - **Body**:
     ```json
     {
-        "CategoryName": "Trekking"
+        "category_name": "Trekking"
     }
     ```
+- **Response**:
+Newly updated category is displayed.
 
-#### Delete a category
+## Delete a category
 
 - **Endpoint**: `DELETE /categories/<category_id>`
 - **Description**: Remove a category from the system.
 - **Parameters**: 
   - `category_id: int`
+- **Response**:
+"Category deleted successfully"
 
 ### **Statistics and Extended Queries**
 
-#### Get average accommodation cost
+## Get average accommodation cost
 
 - **Endpoint**: `GET /expenses/accommodation/average`
-- **Description**: Calculate the average cost of accommodations.
+- **Description**: Calculate the average cost of accommodations overall.
 - **Returns**:
     ```json
     {
@@ -226,7 +339,7 @@
     }
     ```
 
-#### Get trips with their categories
+## Get trips with their categories
 
 - **Endpoint**: `GET /trips/with-categories`
 - **Description**: List trips with their associated categories.
@@ -234,75 +347,156 @@
     ```json
     [
         {
-            "TripID": 1,
-            "destination": "Paris",
-            "categories": ["Beach", "Hiking"],
-            ...
+            "categories": [
+                "Vacation"
+            ],
+            "destination": "London, UK",
+            "duration_days": 7,
+            "end_date": "Mon, 08 May 2023 00:00:00 GMT",
+            "id": 1,
+            "start_date": "Mon, 01 May 2023 00:00:00 GMT",
+            "traveler_age": 35,
+            "traveler_gender": "Male",
+            "traveler_name": "John Smith",
+            "traveler_nationality": "American",
+            "trip_comment": null
+        },
+        {
+            "categories": [
+                "Business"
+            ],
+            "destination": "Phuket, Thailand",
+            "duration_days": 5,
+            "end_date": "Tue, 20 Jun 2023 00:00:00 GMT",
+            "id": 2,
+            "start_date": "Thu, 15 Jun 2023 00:00:00 GMT",
+            "traveler_age": 28,
+            "traveler_gender": "Female",
+            "traveler_name": "Jane Doe",
+            "traveler_nationality": "Canadian",
+            "trip_comment": null
         },
         ...
     ]
     ```
 
-#### Get full details for a specific trip
+## Get full details for a specific trip
 
 - **Endpoint**: `GET /trips/<trip_id>/details`
-- **Description**: Retrieve a comprehensive breakdown of a trip.
+- **Description**: Retrieve a comprehensive breakdown of a trip. (Categories, Expenses, Trip)
 - **Parameters**: 
   - `trip_id: int`
 - **Returns**:
     ```json
     {
-        "TripID": 1,
-        "destination": "Paris",
-        "expenses": [...],
-        "categories": [...],
-        ...
+        "categories": [
+            "Vacation"
+        ],
+        "destination": "London, UK",
+        "duration_days": 7,
+        "end_date": "Mon, 08 May 2023 00:00:00 GMT",
+        "expenses": [
+            {
+                "accommodation_cost": 1200.0,
+                "id": 1,
+                "main_accommodation_type": "Hotel",
+                "main_transportation_type": "Flight",
+                "transportation_cost": 600.0,
+                "trip_id": 1
+            }
+        ],
+        "id": 1,
+        "start_date": "Mon, 01 May 2023 00:00:00 GMT",
+        "traveler_age": 35,
+        "traveler_gender": "Male",
+        "traveler_name": "John Smith",
+        "traveler_nationality": "American",
+        "trip_comment": null
     }
     ```
 
 ### **Search**
 
-#### Search for trips based on date range
+## Search for trips based on date range
 
 - **Endpoint**: `GET /trips/search?start_date=<start_date>&end_date=<end_date>`
 - **Description**: Find trips within a date range.
 - **Parameters**: 
   - `start_date: date`
   - `end_date: date`
+  - Format is YYYY-MM-DD in url.
 - **Returns**:
     ```json
     [
         {
-            "TripID": 1,
-            "destination": "Paris",
-            ...
+            "destination": "London, UK",
+            "duration_days": 7,
+            "end_date": "Mon, 08 May 2023 00:00:00 GMT",
+            "id": 1,
+            "start_date": "Mon, 01 May 2023 00:00:00 GMT",
+            "traveler_age": 35,
+            "traveler_gender": "Male",
+            "traveler_name": "John Smith",
+            "traveler_nationality": "American",
+            "trip_comment": null
+        },
+        {
+            "destination": "Phuket, Thailand",
+            "duration_days": 5,
+            "end_date": "Tue, 20 Jun 2023 00:00:00 GMT",
+            "id": 2,
+            "start_date": "Thu, 15 Jun 2023 00:00:00 GMT",
+            "traveler_age": 28,
+            "traveler_gender": "Female",
+            "traveler_name": "Jane Doe",
+            "traveler_nationality": "Canadian",
+            "trip_comment": null
         },
         ...
     ]
     ```
 
-#### Search trips based on a keyword
+## Search trips based on a keyword
 
 - **Endpoint**: `GET /trips/search?query=<keyword>`
 - **Description**: Locate trips with a specific keyword.
 - **Parameters**: 
   - `query: string`
-- **Returns**:
+- **Returns (Ex: Africa)**:
     ```json
     [
         {
-            "TripID": 3,
-            "destination": "Berlin",
-            ...
+            "destination": "Cape Town, South Africa",
+            "duration_days": 9,
+            "end_date": "Sat, 10 Jun 2023 00:00:00 GMT",
+            "id": 146,
+            "start_date": "Thu, 01 Jun 2023 00:00:00 GMT",
+            "traveler_age": 45,
+            "traveler_gender": "Male",
+            "traveler_name": "Michael Johnson",
+            "traveler_nationality": "South African",
+            "trip_comment": null
         },
+        {
+            "destination": "Africa",
+            "duration_days": 10,
+            "end_date": "Sun, 22 Sep 2024 00:00:00 GMT",
+            "id": 292,
+            "start_date": "Thu, 12 Sep 2024 00:00:00 GMT",
+            "traveler_age": 28,
+            "traveler_gender": "Female",
+            "traveler_name": "Alice Smith",
+            "traveler_nationality": "American",
+            "trip_comment": "Excited for this trip!"
+        }
         ...
     ]
     ```
 
-#### Search expenses within a certain amount range
+## Search expenses within a certain amount range
 
 - **Endpoint**: `GET /expenses/search?amount_min=<x>&amount_max=<y>`
-- **Description**: Identify expenses within a specific cost range.
+- **Description**: Identify expenses within a specific cost range. ADDS transportation and accommodation together and shows results in range.
 - **Parameters**: 
   - `amount_min: float`
   - `amount_max: float`
@@ -310,10 +504,20 @@
     ```json
     [
         {
-            "ExpenseID": 1,
-            "AccommodationType": "Hotel",
-            "amount": 150.0,
-            ...
+            "accommodation_cost": 1200.0,
+            "id": 1,
+            "main_accommodation_type": "Hotel",
+            "main_transportation_type": "Flight",
+            "transportation_cost": 600.0,
+            "trip_id": 1
+        },
+        {
+            "accommodation_cost": 800.0,
+            "id": 2,
+            "main_accommodation_type": "Resort",
+            "main_transportation_type": "Flight",
+            "transportation_cost": 500.0,
+            "trip_id": 2
         },
         ...
     ]

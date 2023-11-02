@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, Date, ForeignKey
 from .base import Base
+from sqlalchemy.orm import relationship
 
 # Define Trip model class
 class Trips(Base):
@@ -14,6 +15,7 @@ class Trips(Base):
     traveler_gender = Column(String)
     traveler_nationality = Column(String)
     trip_comment = Column(String)
+    categories_association = relationship('TripCategoryAssociation', back_populates='trip')
 
     def __repr__(self):
             return (f"<Trips(id={self.id}, destination={self.destination}, start_date={self.start_date}, "
