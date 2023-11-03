@@ -2,6 +2,7 @@
 
 # List of Endpoints
 - [List All Trips](#list-all-trips)
+- [List trips with LIMIT](#list-trips-with-limit)
 - [Get Trip By ID](#get-a-specific-trip-by-id)
 - [List Trips by Traveller](#list-all-trips-by-a-specific-traveler)
 - [Add a new trip](#add-a-new-trip)
@@ -58,6 +59,44 @@
         },
         ...
     ]
+## List trips with limit
+
+- **Endpoint**: `GET /trips?limit=`
+- **Description**: Retrieve a list of trips stored in the system with an option to limit the number of results returned.
+- **Query Parameters**:
+  - `limit`: The maximum number of trips to return. If not specified, all trips will be returned.
+- **Returns**: A JSON array of trip objects limited by the `limit` parameter. Each trip object contains the following fields:
+    - `id`: The unique identifier of the trip.
+    - `traveler_name`: The name of the traveler.
+    - `traveler_age`: The age of the traveler.
+    - `traveler_gender`: The gender of the traveler.
+    - `traveler_nationality`: The nationality of the traveler.
+    - `destination`: The destination of the trip.
+    - `start_date`: The start date of the trip.
+    - `end_date`: The end date of the trip.
+    - `duration_days`: The duration of the trip in days.
+    - `trip_comment`: Additional comments about the trip, if any.
+
+- **Example Request**: `GET /trips?limit=10`
+
+- **Example Response**:
+    ```json
+    [
+        {
+            "id": 1,
+            "traveler_name": "John Smith",
+            "traveler_age": 35,
+            "traveler_gender": "Male",
+            "traveler_nationality": "American",
+            "destination": "London, UK",
+            "start_date": "Mon, 01 May 2023 00:00:00 GMT",
+            "end_date": "Mon, 08 May 2023 00:00:00 GMT",
+            "duration_days": 7,
+            "trip_comment": null
+        },
+        // ... more trip objects up to the limit ...
+    ]
+    ```
 
 ## Get a specific trip by ID
 

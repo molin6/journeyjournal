@@ -21,19 +21,28 @@ def serialize(model_instance):
     serialized_data = {c.name: getattr(model_instance, c.name) for c in model_instance.__table__.columns}
     return serialized_data
 
-#Check for name if not then list all trips
+#Check for name and a limit if not then list all trips
+from flask import request, jsonify
+
 @app.route('/trips', methods=['GET'])
 def list_trips():
     traveler_name = request.args.get('traveler_name')
-    
+    limit = request.args.get('limit', type=int)  # No default value
+
+    query = session.query(Trips)
+
     # If traveler_name is provided, filter by it
     if traveler_name:
-        trips = session.query(Trips).filter(Trips.traveler_name == traveler_name).all()
-    # If not, return all trips
-    else:
-        trips = session.query(Trips).all()
+        query = query.filter(Trips.traveler_name == traveler_name)
+
+    # Apply the limit to the query if a limit is provided
+    if limit is not None:
+        query = query.limit(limit)
+
+    trips = query.all()
     
     return jsonify([serialize(trip) for trip in trips])
+
 
 
 #Get a specific trip by ID
