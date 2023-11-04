@@ -25,12 +25,17 @@ def serialize(model_instance):
 def list_trips():
     traveler_name = request.args.get('traveler_name')
     limit = request.args.get('limit', type=int)  # No default value
+    offset = request.args.get('offset', default=0, type=int)  # Default to 0 if not provided
 
     query = session.query(Trips)
 
-    # If traveler_name is provided, filter by it
+    # check for traveler_name
     if traveler_name:
         query = query.filter(Trips.traveler_name == traveler_name)
+
+    # Apply offset
+    if offset:
+        query = query.offset(offset)
 
     # Apply the limit to the query if a limit is provided
     if limit is not None:
@@ -39,6 +44,7 @@ def list_trips():
     trips = query.all()
     
     return jsonify([serialize(trip) for trip in trips])
+
 
 
 

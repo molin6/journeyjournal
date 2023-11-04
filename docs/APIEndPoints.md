@@ -59,13 +59,14 @@
         },
         ...
     ]
-## List trips with limit
+## List trips with limit and offset
 
-- **Endpoint**: `GET /trips?limit=`
-- **Description**: Retrieve a list of trips stored in the system with an option to limit the number of results returned.
+- **Endpoint**: `GET /trips`
+- **Description**: Retrieve a list of trips stored in the system with options to limit the number of results returned and to offset the starting point of the results.
 - **Query Parameters**:
   - `limit`: The maximum number of trips to return. If not specified, all trips will be returned.
-- **Returns**: A JSON array of trip objects limited by the `limit` parameter. Each trip object contains the following fields:
+  - `offset`: The number of records to skip before starting to return the results. Useful for pagination. Not required
+- **Returns**: A JSON array of trip objects limited by the `limit` parameter and offset by the `offset` parameter. Each trip object contains the following fields:
     - `id`: The unique identifier of the trip.
     - `traveler_name`: The name of the traveler.
     - `traveler_age`: The age of the traveler.
@@ -77,26 +78,27 @@
     - `duration_days`: The duration of the trip in days.
     - `trip_comment`: Additional comments about the trip, if any.
 
-- **Example Request**: `GET /trips?limit=10`
+- **Example Request**: `GET /trips?limit=10&offset=20`
 
 - **Example Response**:
     ```json
     [
         {
-            "id": 1,
-            "traveler_name": "John Smith",
-            "traveler_age": 35,
-            "traveler_gender": "Male",
-            "traveler_nationality": "American",
-            "destination": "London, UK",
-            "start_date": "Mon, 01 May 2023 00:00:00 GMT",
-            "end_date": "Mon, 08 May 2023 00:00:00 GMT",
+            "id": 21,
+            "traveler_name": "Alice Johnson",
+            "traveler_age": 29,
+            "traveler_gender": "Female",
+            "traveler_nationality": "French",
+            "destination": "Paris, France",
+            "start_date": "Wed, 15 Jul 2023 00:00:00 GMT",
+            "end_date": "Wed, 22 Jul 2023 00:00:00 GMT",
             "duration_days": 7,
-            "trip_comment": null
+            "trip_comment": "Looking forward to the museums!"
         },
-        // ... more trip objects up to the limit ...
+        // ... more trip objects up to the limit, starting from the offset ...
     ]
     ```
+
 
 ## Get a specific trip by ID
 
