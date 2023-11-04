@@ -2,7 +2,7 @@
 
 # List of Endpoints
 - [List All Trips](#list-all-trips)
-- [List trips with LIMIT](#list-trips-with-limit)
+- [List trips with LIMIT OR OFFSET](#list-trips-with-limit)
 - [Get Trip By ID](#get-a-specific-trip-by-id)
 - [List Trips by Traveller](#list-all-trips-by-a-specific-traveler)
 - [Add a new trip](#add-a-new-trip)
