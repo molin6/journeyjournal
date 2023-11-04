@@ -21,9 +21,6 @@ def serialize(model_instance):
     serialized_data = {c.name: getattr(model_instance, c.name) for c in model_instance.__table__.columns}
     return serialized_data
 
-#Check for name and a limit if not then list all trips
-from flask import request, jsonify
-
 @app.route('/trips', methods=['GET'])
 def list_trips():
     traveler_name = request.args.get('traveler_name')

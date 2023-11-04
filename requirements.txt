@@ -2,4 +2,3 @@ sqlalchemy
 pandas
 requests
 Flask
-Flask SQLAlchemy

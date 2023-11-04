@@ -244,11 +244,9 @@ Newly added trip details
     ```json
     {
         "accommodation_cost": 350.0,
-        "id": 50,
         "main_accommodation_type": "Airbnb",
         "main_transportation_type": "Plane",
         "transportation_cost": 600.0,
-        "trip_id": 50
     }
     ```
 - **Returns**:
