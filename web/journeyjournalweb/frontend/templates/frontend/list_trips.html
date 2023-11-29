@@ -1,0 +1,7 @@
+<ul>
+    {% for trip in trips %}
+        <li>{{ trip.destination }} - {{ trip.duration_days }}</li>
+    {% empty %}
+        <li>No trips found.</li>
+    {% endfor %}
+    </ul>
