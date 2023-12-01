@@ -1,7 +1,92 @@
-<ul>
-    {% for trip in trips %}
-        <li>{{ trip.destination }} - {{ trip.duration_days }}</li>
-    {% empty %}
-        <li>No trips found.</li>
-    {% endfor %}
-    </ul>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/listing_bg.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/listing_table.css' %}">
+</head>
+
+<div class="landscape">
+    <div class="mountain"></div>
+    <div class="mountain mountain-2"></div>
+    <div class="mountain mountain-3"></div>
+    <div class="light"></div>
+    <div class="light light-1"></div>
+    <div class="light light-2"></div>
+    <div class="light light-3"></div>
+    <div class="light light-4"></div>
+    <div class="light light-5"></div>
+    <div class="light light-6"></div>
+    <div class="light light-7"></div>
+    <div class="water"></div>
+    <div class="splash"></div>
+    <div class="splash delay-1"></div>
+    <div class="splash delay-2"></div>
+    <div class="splash splash-4 delay-2"></div>
+    <div class="splash splash-4 delay-3"></div>
+    <div class="splash splash-4 delay-4"></div>
+    <div class="splash splash-stone delay-3"></div>
+    <div class="splash splash-stone splash-4"></div>
+    <div class="splash splash-stone splash-5"></div>
+    <div class="lotus lotus-1"></div>
+    <div class="lotus lotus-2"></div>
+    <div class="lotus lotus-3"></div>
+    <div class="front">
+      <div class="stone"></div>
+      <div class="grass"></div>
+      <div class="grass grass-1"></div>
+      <div class="grass grass-2"></div>
+      <div class="reed"></div>
+      <div class="reed reed-1"></div>
+    </div>
+  </div>
+
+  <div class="title-container">
+    <a href="/" class="title-link">
+        <h1 class="title">Journey Journal</h1>
+    </a>
+</div>
+
+
+  <div class="table-container">
+    <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterTable()">
+        <div class="filters">
+            <select id="destinationFilter" class="filter-dropdown" onchange="filterTable()">
+                <option value="">All Destinations</option>
+                <!-- Dynamically load destination options here -->
+            </select>
+            <input type="number" id="durationFilter" class="filter-input" placeholder="Duration (Days)" oninput="filterTable()">
+            <select id="originFilter" class="filter-dropdown" onchange="filterTable()">
+                <option value="">All Origins</option>
+                <!-- Dynamically load origin options here -->
+            </select>
+        </div>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Traveler Name</th>
+                <th>Destination</th>
+                <th>Duration (Days)</th>
+                <th>Traveler Origin</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+
+
+  
+    <div class="pagination">
+        <button id="prevButton" onclick="changePage(-1)">Prev</button>
+        <span id="page-info"></span>
+        <button id="nextButton" onclick="changePage(1)">Next</button>
+    </div>
+        {{ trips|json_script:"trips-data" }}
+        <script src="{% static 'frontend/filter.js' %}" type="text/javascript"></script>
+</body>
+</html>
+
+
+  

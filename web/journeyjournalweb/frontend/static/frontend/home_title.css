@@ -1,0 +1,42 @@
+/* Styles for title */
+.content-container {
+    width: 90%;
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Ensure it's above the landscape */
+    text-align: center;
+}
+
+.title {
+    font-family: 'Calligraffitti', cursive;
+    font-weight: 700;
+    font-size: 10rem;
+    text-shadow: 0px 2px 5px #ced0d3, 5px 5px 0px #FFB650, 10px 10px 0px #FFD662, 15px 15px 0px #FF80BF, 20px 20px 0px #EF5097, 25px 25px 0px #6868AC, 30px 30px 0px #90B1E0;
+    color: #F9f1cc;
+    margin: 0;
+}
+
+.description {
+    font-family: 'Calligraffitti', cursive;
+    font-size: 2rem;
+    color: #fff;
+    margin: 20px 0;
+    margin-top: 75px;
+}
+
+.enter-button {
+    font-family: 'Calligraffitti', cursive;
+    padding: 20px 30px;
+    background-color: #ff4c00;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 55px;
+    text-decoration: none; /* Removes the underline typically found on links */
+    display: inline-block; /* Allows padding and width to be set correctly */
+    text-align: center
+}

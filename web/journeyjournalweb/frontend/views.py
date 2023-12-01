@@ -1,9 +1,14 @@
 from django.shortcuts import render
 import requests
-from django.shortcuts import render
+
+
+def home(request):
+    return render(request, 'frontend/home.html')
 
 def list_trips(request):
     response = requests.get('http://127.0.0.1:5000/trips')
-    trips = response.json() if response.status_code == 200 else []
-    return render(request, 'frontend/list_trips.html', {'trips': trips})
+    data = response.json()  # Fetching the data from the API
+
+    return render(request, 'frontend/list_trips.html', {'trips': data})
+
 

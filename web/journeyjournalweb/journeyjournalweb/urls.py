@@ -20,5 +20,6 @@ from frontend import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',views.home),
     path('trips/', views.list_trips, name='list_trips'),
 ]
