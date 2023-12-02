@@ -49,7 +49,10 @@
 
 
   <div class="table-container">
-    <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterTable()">
+    <div class="input-container">
+        <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterTable()">
+        <button id="addTripButton" onclick="openAddTripModal()">Add Trip</button>
+    </div>
         <div class="filters">
             <select id="destinationFilter" class="filter-dropdown" onchange="filterTable()">
                 <option value="">All Destinations</option>
@@ -74,17 +77,71 @@
 
         </tbody>
     </table>
-
-
-
   
     <div class="pagination">
         <button id="prevButton" onclick="changePage(-1)">Prev</button>
         <span id="page-info"></span>
         <button id="nextButton" onclick="changePage(1)">Next</button>
     </div>
+
+
+<!-- Trip Details Modal -->
+<div id="tripDetailsModal" class="modal">
+    <div id="successMessage" style="display: none;">Comment saved successfully!</div>
+    <div id="deleteConfirmation" style="display: none;">
+        <p>Are you sure you want to delete this trip?</p>
+        <button id="confirmDeleteButton" onclick="deleteTrip()">Yes</button>
+        <button id="cancelDeleteButton" onclick="cancelDelete()">Cancel</button>
+    </div>
+    <div class="modal-content">
+        <div id="tripDetails" class="trip-details-container">
+            <!-- Trip details will be populated here -->
+        </div>
+        <div id="editForms" style="display: none;">
+            <!-- Inline editing elements go here -->
+            <input type="text" id="editTravelerName" placeholder="Traveler Name" class="edit-input">
+            <input type="text" id="editDestination" placeholder="Destination" class="edit-input">
+            <input type="number" id="editDurationDays" placeholder="Duration (Days)" class="edit-input">
+            <input type="date" id="editStartDate" placeholder="Start Date" class="edit-input">
+            <input type="date" id="editEndDate" placeholder="End Date" class="edit-input">
+            <input type="number" id="editTravelerAge" placeholder="Traveler Age" class="edit-input">
+            <input type="text" id="editTravelerGender" placeholder="Traveler Gender" class="edit-input">
+            <input type="text" id="editTravelerNationality" placeholder="Traveler Nationality" class="edit-input">
+            <textarea id="editTripCategory" placeholder="Edit category..."></textarea>
+        </div>
+        <div id="buttonContainer">
+            <button id="editTripButton" onclick="toggleEditForms()">Edit Trip</button>
+            <div id="deleteButtonContainer">
+                <button id="deleteTripButton" class="modal-button delete-button" onclick="showDeleteConfirmation()">Delete Trip</button>
+            </div>
+        </div>
+        <button id="saveEditButton" style="display: none;" onclick="saveEdit()">Save Changes</button>
+    </div>
+</div>
+<!-- Add Trip Modal -->
+<div id="addTripModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeAddTripModal()">&times;</span>
+        <h2>Add Trip</h2>
+        <div id="addTripForm">
+            <input type="text" id="travelerName" placeholder="Traveler Name" class="edit-input" required>
+            <input type="text" id="destination" placeholder="Destination" class="edit-input" required>
+            <input type="number" id="durationDays" placeholder="Duration (Days)" class="edit-input" required>
+            <input type="date" id="startDate" placeholder="Start Date" class="edit-input" required>
+            <input type="date" id="endDate" placeholder="End Date" class="edit-input" required>
+            <input type="number" id="travelerAge" placeholder="Traveler Age" class="edit-input" required>
+            <input type="text" id="travelerGender" placeholder="Traveler Gender" class="edit-input" required>
+            <input type="text" id="travelerNationality" placeholder="Traveler Nationality" class="edit-input" required>
+            <textarea id="tripCategory" placeholder="Trip Category" required></textarea>
+            <button id="submitAddTripButton" onclick="addTrip()">Add Trip</button>
+        </div>
+    </div>
+</div>
+
+
         {{ trips|json_script:"trips-data" }}
         <script src="{% static 'frontend/filter.js' %}" type="text/javascript"></script>
+
 </body>
 </html>
 

@@ -8,8 +8,11 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 from sqlalchemy import or_
 from sqlalchemy import and_
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
 
 DATABASE_URL = 'sqlite:///journeyjournal.db'
 engine = create_engine(DATABASE_URL)

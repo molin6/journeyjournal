@@ -19,7 +19,7 @@
 }
 
 .description {
-    font-family: 'Calligraffitti', cursive;
+    font-family: Arial, sans-serif; /* Change to Arial */
     font-size: 2rem;
     color: #fff;
     margin: 20px 0;
@@ -27,7 +27,7 @@
 }
 
 .enter-button {
-    font-family: 'Calligraffitti', cursive;
+    font-family: Arial, sans-serif; /* Change to Arial */
     padding: 20px 30px;
     background-color: #ff4c00;
     border: none;
@@ -38,5 +38,6 @@
     margin-top: 55px;
     text-decoration: none; /* Removes the underline typically found on links */
     display: inline-block; /* Allows padding and width to be set correctly */
-    text-align: center
+    text-align: center;
 }
+
