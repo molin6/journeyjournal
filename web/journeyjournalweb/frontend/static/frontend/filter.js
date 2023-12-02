@@ -1,7 +1,7 @@
 let tripsData; // Will hold the initial data from the server
 let filteredData; // Will hold data after applying filters
 let currentPage = 1;
-const itemsPerPage = 8;
+const itemsPerPage = 6;
 
 // Populate tripsData from the Django template
 document.addEventListener('DOMContentLoaded', function() {

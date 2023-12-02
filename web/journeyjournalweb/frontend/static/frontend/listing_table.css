@@ -325,11 +325,17 @@
 }
 
 #successMessage {
-    background-color: #4CAF50; /* Green background color */
-    color: white; /* White text color */
+    position: sticky; /* Sticky position to keep it visible */
+    top: 10px; /* Distance from the top of the modal */
+    z-index: 1100; /* Above other modal content */
+    background-color: #d4edda; /* Light green background to indicate success */
+    color: #155724; /* Dark green text color for readability */
+    padding: 10px;
+    margin-bottom: 10px; /* Space below the message */
+    border-radius: 5px;
     text-align: center; /* Center the text */
-    padding: 10px; /* Add padding for spacing */
-    margin-bottom: 10px; /* Add margin to separate it from other elements */
+    display: none; /* Keep it hidden by default */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow for depth */
 }
 
 /* Add this CSS to your stylesheet */
