@@ -75,7 +75,7 @@ Before running the API or the Django project, ensure you have the following inst
    Change to the Django project directory:
 
    ```bash
-   cd web/journeyjournalweb
+   cd web/
    ```
 
 2. **Install Django Dependencies**
@@ -85,15 +85,13 @@ Before running the API or the Django project, ensure you have the following inst
    ```bash
    pip install -r requirements.txt
    ```
+3. **Navigate to the Django Project Directory**
 
-3. **Run Migrations**
-
-   Apply the Django migrations:
+   Change to the Django project directory:
 
    ```bash
-   python manage.py migrate
+   cd journeyjournalweb/
    ```
-
 4. **Start the Django Server**
 
    Run the Django development server:
@@ -102,7 +100,7 @@ Before running the API or the Django project, ensure you have the following inst
    python manage.py runserver
    ```
 
-   The Django project should now be accessible at `http://127.0.0.1:5000`.
+   The Django project should now be accessible at `http://127.0.0.1:8000`.
 
 ### Running Both API and Django Project
 
