@@ -1,7 +1,43 @@
 ## Database Schema
 
 ### Entity-Relationship Diagram (ERD)
-![ERD of JourneyJournal Database](entitydesign.png)
+erDiagram
+    TRIPS ||--o{ TRIPCATEGORYASSOCIATIONS : categorized
+    TRIPS {
+        int TripID PK
+        varchar Destination NN
+        date StartDate NN
+        date EndDate NN
+        int DurationDays NN
+        varchar TravelerName NN
+        int TravelerAge
+        varchar TravelerGender
+        varchar TravelerNationality
+        text Comment
+    }
+
+    TRIPCATEGORIES ||--o{ TRIPCATEGORYASSOCIATIONS : defines
+    TRIPCATEGORIES {
+        int CategoryID PK
+        varchar CategoryName NN
+    }
+
+    TRIPCATEGORYASSOCIATIONS {
+        int TripCategoryID PK
+        int TripID FK
+        int CategoryID FK
+    }
+
+    EXPENSES }|--|| TRIPS : incurs
+    EXPENSES {
+        int ExpenseID PK
+        int TripID FK
+        varchar MainAccommodationType
+        float AccommodationCost
+        varchar MainTransportationType
+        float TransportationCost
+    }
+
 
 ### Data Dictionary
 
